@@ -93,22 +93,12 @@ dht DHT; // Creats a DHT object
     Serial.println(" % ");
     
 
-    // Write to ThingSpeak. There are up to 8 fields in a channel, allowing you to store up to 8 different  
-
-    // soil data in field 1
-    ThingSpeak.writeField(myChannelNumber, 1, soil_data, myWriteAPIKey);
-
-    // water data in field 2
-    ThingSpeak.writeField(myChannelNumber, 2, water_data, myWriteAPIKey);
-
-    // light data in field 3
-    ThingSpeak.writeField(myChannelNumber, 3, light_data, myWriteAPIKey);
-
-    // temperature data in field 4
-    ThingSpeak.writeField(myChannelNumber, 4, temp_data, myWriteAPIKey);
-
-    // humidity data in field 5
-    ThingSpeak.writeField(myChannelNumber, 5, humid_data, myWriteAPIKey);
+    ThingSpeak.setField(1, soil_data); 
+    ThingSpeak.setField(2, water_data);
+    ThingSpeak.setField(3, light_data);
+    ThingSpeak.setField(4, temp_data);
+    ThingSpeak.setField(5, humid_data);
+    ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);
 
     int pumpdata = ThingSpeak.readIntField (myChannelNumberPump, 1);  
     Serial.print(pumpdata);
